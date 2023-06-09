@@ -2,7 +2,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CILabTest {
 
@@ -19,14 +19,58 @@ public class CILabTest {
     }
 
     @Test
-    public void detectCapitalUseTest1() {
-       fail("Not yet implemented");
-
+    public void testAllUppercase() {
+        myString.setString("USA");
+        assertTrue(myString.detectCapitalUse());
     }
+
     @Test
-    public void detectCapitalUseTest2() {
-        fail("Not yet implemented");
+    public void testAllLowercase() {
+        myString.setString("hello");
+        assertTrue(myString.detectCapitalUse());
     }
 
+    @Test
+    public void testFirstLetterCapital() {
+        myString.setString("Title");
+        assertTrue(myString.detectCapitalUse());
+    }
 
+    @Test
+    public void testInvalidMixedCase() {
+        myString.setString("tITLE");
+        assertFalse(myString.detectCapitalUse());
+    }
+
+    @Test
+    public void testEmptyString() {
+        myString.setString("");
+        assertTrue(myString.detectCapitalUse());
+    }
+
+    @Test
+    public void testSingleUppercaseLetter() {
+        myString.setString("A");
+        assertTrue(myString.detectCapitalUse());
+    }
+
+    @Test
+    public void testSingleLowercaseLetter() {
+        myString.setString("a");
+        assertTrue(myString.detectCapitalUse());
+    }
+
+    @Test
+    public void testInvalidMixedCase2() {
+        myString.setString("HeLLo");
+        assertFalse(myString.detectCapitalUse());
+    }
+
+    // Optionally, if non-alphabetic characters need to be tested
+    @Test
+    public void testNonAlphabeticCharacters() {
+        myString.setString("He11o");
+        // Assume true or false depending on how the method is implemented
+        assertTrue(myString.detectCapitalUse());
+    }
 }
